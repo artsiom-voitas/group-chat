@@ -1,6 +1,5 @@
 'use client'
-import LoginButton from './LoginButton'
-import { ThemeSwitcher } from './ThemeSwitcher'
+import { LoginButton, ThemeSwitcher } from '@/components'
 
 export default function Header() {
     return (
