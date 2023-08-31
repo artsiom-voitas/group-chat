@@ -19,6 +19,7 @@ export default function Home() {
     if (isLoggedIn) {
         redirect('/messenger')
     }
+
     return (
         <main className="container mx-auto z-0 relative">
             <Card className="py-4 p-7 px-3 sm:px-7  my-24 w-full lg:w-1/2 mx-auto">
