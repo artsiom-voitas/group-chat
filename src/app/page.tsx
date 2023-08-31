@@ -2,7 +2,7 @@
 
 import { auth } from '@/utils/firebase'
 import { Button, Card, CardBody, CardFooter, CardHeader } from '@nextui-org/react'
-import { GoogleAuthProvider, signInWithPopup, signInWithRedirect } from 'firebase/auth'
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { Lock } from 'lucide-react'
 import { redirect } from 'next/navigation'
 import { useAuthState } from 'react-firebase-hooks/auth'
