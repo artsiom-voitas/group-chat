@@ -14,8 +14,12 @@ export interface FetchedMessages {
 
 export default function Messages() {
     const [messages, setMessages] = useState<FetchedMessages[]>([])
+    const [isLoaded, setIsLoaded] = useState<boolean>(true)
 
     useEffect(() => {
+        if (messages.length === 0) {
+            setIsLoaded(false)
+        }
         const q = query(collection(db, 'messages'), orderBy('createdAt', 'asc'))
         const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
             const fetchedMessages: any[] = []
@@ -24,17 +28,23 @@ export default function Messages() {
             })
             setMessages(fetchedMessages)
         })
+        if (messages.length > 0) {
+            setTimeout(() => {
+                setIsLoaded(true)
+            }, 1500)
+        }
         return () => {
             unsubscribe
         }
-    }, [])
+    }, [messages.length])
 
     return (
         <div className="flex flex-col gap-3 py-4">
             {messages.map((message) => (
                 <Message
-                    key={message.id}
                     message={message}
+                    key={message.id}
+                    isLoaded={isLoaded}
                 />
             ))}
             <ScrollToBottom />
