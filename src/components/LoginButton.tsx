@@ -7,7 +7,7 @@ import {
     ModalHeader,
     useDisclosure
 } from '@nextui-org/react'
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { GoogleAuthProvider, signInWithRedirect } from 'firebase/auth'
 import { LogIn, LogOut } from 'lucide-react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { BsGoogle } from 'react-icons/bs'
@@ -18,7 +18,7 @@ export default function LoginButton() {
 
     function signInWithGoogle(): void {
         const provider = new GoogleAuthProvider()
-        signInWithPopup(auth, provider)
+        signInWithRedirect(auth, provider)
     }
     function signOut(): void {
         auth.signOut()
