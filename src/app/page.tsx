@@ -2,22 +2,23 @@
 
 import { auth } from '@/utils/firebase'
 import { Button, Card, CardBody, CardFooter, CardHeader } from '@nextui-org/react'
-import { GoogleAuthProvider, signInWithRedirect } from 'firebase/auth'
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { Lock } from 'lucide-react'
-import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { BsGoogle } from 'react-icons/bs'
 
 export default function Home() {
     const [isLoggedIn] = useAuthState(auth)
+    const router = useRouter()
 
     function signInWithGoogle(): void {
         const provider = new GoogleAuthProvider()
-        signInWithRedirect(auth, provider)
+        signInWithPopup(auth, provider)
     }
 
     if (isLoggedIn) {
-        redirect('/messenger')
+        router.replace('/messenger')
     }
 
     return (
